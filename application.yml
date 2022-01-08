@@ -3,7 +3,9 @@ server:
 
 management:
    endpoints:
-         defaultZone: http://localhost:8761/eureka/
+        web:
+         exposure:
+            include: '*'
 
 ---
 spring:
@@ -13,11 +15,8 @@ spring:
          client:
             url: http://localhost:9090
 
-      web:
-         exposure:
-            include: '*'
-
 ---
+
 spring:
    profiles: eureka-client
 eureka:
