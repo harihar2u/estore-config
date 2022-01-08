@@ -1,15 +1,37 @@
 server:
-  port: 0
-  
-eureka:
-    enabled: true
-    client:
-      service-url:
-        defaultZone: http://localhost:8761/eureka/
-
+   port: 0
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+   endpoints:
+         defaultZone: http://localhost:8761/eureka/
+
+---
+spring:
+   profiles: admin-client
+   boot:
+      admin:
+         client:
+            url: http://localhost:9090
+
+      web:
+         exposure:
+            include: '*'
+
+---
+spring:
+   profiles: eureka-client
+eureka:
+   enabled: true
+   client:
+      service-url:
+---
+spring:
+   profiles: zipkin-client
+   zipkin:
+       baseUrl: http://127.0.0.1:9411/
+
+
+---
+spring:
+   profiles: config-client
+   config.import: 'optional:configserver:http://localhost:8888'
