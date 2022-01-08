@@ -22,7 +22,9 @@ spring:
    profiles: eureka-client
 eureka:
    enabled: true
-   client:  http://localhost:8761/
+   client:
+     serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
 
 ---
 
